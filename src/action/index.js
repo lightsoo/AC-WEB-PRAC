@@ -1,4 +1,6 @@
+/* action types 를 선언*/
 
+export const FETCH_USER = 'FETCH_USER';
 
 
 

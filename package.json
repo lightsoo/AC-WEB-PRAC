@@ -82,5 +82,7 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  // 직접 was를 boot해서 테스
+  "proxy": "http://localhost:8080"
 }
