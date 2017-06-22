@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import About from './components/user';
+import User from './components/user';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
+
 import {Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
@@ -16,7 +17,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route path="/" component={App}>
-                <Route path="/about" component={About}>
+                <Route path="/about" component={User}>
 
 
                 </Route>

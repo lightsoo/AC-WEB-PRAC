@@ -1,5 +1,3 @@
-// import {FETCH_USER} from '../action/index';
-
 
 export default function user(state = '', action) {
     switch (action.type){
