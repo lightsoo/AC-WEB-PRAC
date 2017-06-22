@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {fetchUser} from '../actions/index';
+import { Button } from 'antd';
+
 
 //부모   - 자식 1
 //      - 자식 2 의 데이터 흐름에서 자식 2의 데이터를 부모를 통해 자식에 보낼수있다
@@ -27,6 +29,7 @@ class User extends Component {
                         asdasd :
                         {this.props.user}
                     </p>
+                <Button typd="Primary">Primary</Button>
             </div>
         );
     }
