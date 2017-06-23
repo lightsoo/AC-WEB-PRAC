@@ -9,15 +9,15 @@ export const FETCH_USER = 'FETCH_USER';
 export const SAVE_USER = 'SAVE_USER';
 
 //action creators
-let action ={};
 
 //User 조회
 export function fetchUser() {
-    // console.log('fetchUser action');
-    return action = {
+    let action = {
         type: 'FETCH_USER',
         payload: 'aaaaaaa'
-    }
+    };
+    // console.log('fetchUser action');
+    return action;
 }
 //User 저장
 export function saveUser() {

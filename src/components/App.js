@@ -64,7 +64,7 @@ class AppBody extends Component {
                 <p style={pStyle} >
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
-                <Link to="/user" >Go user</Link>
+                <Link to="/login/user" >Go user</Link>
             </div>
         );
     }
