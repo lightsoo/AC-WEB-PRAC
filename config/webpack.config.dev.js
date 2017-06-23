@@ -139,6 +139,7 @@ module.exports = {
           /\.(js|jsx)$/,
           /\.css$/,
           /\.json$/,
+            /\.less$/,
           /\.bmp$/,
           /\.gif$/,
           /\.jpe?g$/,
@@ -173,7 +174,7 @@ module.exports = {
         // },
         query:{
             "plugins": [
-                ["import", [{ "libraryName": "antd", "style": "css" }]]
+                ["import", [{ "libraryName": "antd", "style": true }]]
             ],
           cacheDirectory: true,
         }
@@ -215,6 +216,38 @@ module.exports = {
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
+          // Parse less files and modify variables
+        {
+            test: /\.less$/,
+            use: [
+              require.resolve('style-loader'),
+              require.resolve('css-loader'),
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+                     plugins: () => [
+                       require('postcss-flexbugs-fixes'),
+                       autoprefixer({
+                            browsers: [
+                           '>1%',
+                           'last 4 versions',
+                           'Firefox ESR',
+                           'not ie < 9', // React doesn't support IE8 anyway
+                         ],
+                         flexbox: 'no-2009',
+                       }),
+                  ],
+                },
+          },
+          {
+            loader: require.resolve('less-loader'),
+                options: {
+                  modifyVars: { "@primary-color": "#1DA57A" },
+                },
+          },
+        ],
+      },
     ],
   },
   plugins: [

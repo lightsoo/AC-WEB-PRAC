@@ -8,7 +8,7 @@ import Admin from './pages/SiteAdmin/AdminLayoutPage';
 import AdminNoticeList from './pages/SiteAdmin/Notice/NoticeListPage';
 
 import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+// import './index.css';
 
 import {Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';

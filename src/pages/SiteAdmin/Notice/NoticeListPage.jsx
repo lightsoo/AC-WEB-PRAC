@@ -17,6 +17,51 @@ export default class NoticeListPage extends Component {
             name: 'John',
             age: 42,
             address: '10 Downing Street'
+        }, {
+            key: '237',
+            name: 'John',
+            age: 42,
+            address: '10 Downing Street'
+        }, {
+            key: '203',
+            name: 'John',
+            age: 42,
+            address: '10 Downing Street'
+        }, {
+            key: '236',
+            name: 'John',
+            age: 42,
+            address: '10 Downing Street'
+        }, {
+            key: '216',
+            name: 'John',
+            age: 42,
+            address: '10 Downing Street'
+        }, {
+            key: '2231',
+            name: 'John',
+            age: 42,
+            address: '10 Downing Street'
+        }, {
+            key: '2121',
+            name: 'John',
+            age: 42,
+            address: '10 Downing Street'
+        }, {
+            key: '2691',
+            name: 'John',
+            age: 42,
+            address: '10 Downing Street'
+        }, {
+            key: '2681',
+            name: 'John',
+            age: 42,
+            address: '10 Downing Street'
+        }, {
+            key: '2791',
+            name: 'John',
+            age: 42,
+            address: '10 Downing Street'
         }];
 
         const columns = [{

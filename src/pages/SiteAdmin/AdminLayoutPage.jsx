@@ -54,7 +54,7 @@ class Admin extends Component {
         }];
 
         return(
-            <Layout className="AdminLayout">
+            <Layout className="AdminLayoutPage">
                 {/*layout만들때 큰 컴포넌트는 Page로 구성하고 작은 컴포넌트들을 빼줘야한다.*/}
                 <Sider
                     collapsible
@@ -65,8 +65,9 @@ class Admin extends Component {
                 </Sider>
 
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }} />
+                    <Header/>
                     <Content>
+                        {/*<Table dataSource={dataSource} columns={columns}/>*/}
                       {this.props.children}
                     </Content>
                     <Footer style={{ background: '#fff', textAlign: 'center' }}>
