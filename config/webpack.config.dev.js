@@ -72,6 +72,7 @@ module.exports = {
       path.resolve(info.absoluteResourcePath),
   },
   resolve: {
+    // root: paths.appSrc,
     // This allows you to set a fallback for where Webpack should look for modules.
     // We placed these paths second because we want `node_modules` to "win"
     // if there are any conflicts. This matches Node resolution mechanism.
@@ -138,6 +139,7 @@ module.exports = {
           /\.(js|jsx)$/,
           /\.css$/,
           /\.json$/,
+            /\.less$/,
           /\.bmp$/,
           /\.gif$/,
           /\.jpe?g$/,
@@ -164,13 +166,18 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: require.resolve('babel-loader'),
-        options: {
+        // options: {
           
           // This is a feature of `babel-loader` for webpack (not Babel itself).
           // It enables caching results in ./node_modules/.cache/babel-loader/
           // directory for faster rebuilds.
+        // },
+        query:{
+            "plugins": [
+                ["import", [{ "libraryName": "antd", "style": true }]]
+            ],
           cacheDirectory: true,
-        },
+        }
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -209,6 +216,38 @@ module.exports = {
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
+          // Parse less files and modify variables
+        {
+            test: /\.less$/,
+            use: [
+              require.resolve('style-loader'),
+              require.resolve('css-loader'),
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+                     plugins: () => [
+                       require('postcss-flexbugs-fixes'),
+                       autoprefixer({
+                            browsers: [
+                           '>1%',
+                           'last 4 versions',
+                           'Firefox ESR',
+                           'not ie < 9', // React doesn't support IE8 anyway
+                         ],
+                         flexbox: 'no-2009',
+                       }),
+                  ],
+                },
+          },
+          {
+            loader: require.resolve('less-loader'),
+                options: {
+                  modifyVars: { "@primary-color": "#1DA57A" },
+                },
+          },
+        ],
+      },
     ],
   },
   plugins: [
