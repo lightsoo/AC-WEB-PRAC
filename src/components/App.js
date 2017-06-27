@@ -18,8 +18,9 @@ class App extends Component {
 
   }
 
-  componentWillReceiveProps (nextProps) {
-
+  componentWillReceiveProps (nextProps, nextContext) {
+      // console.log('nextProp: ', nextProps);
+      // console.log('nextContext: ', nextContext);
   }
 
   render() {

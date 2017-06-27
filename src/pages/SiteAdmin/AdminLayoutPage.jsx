@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import {Layout, Menu, Icon} from 'antd';
 import {Link} from 'react-router';
 
 import './AdminLayoutPage.less';
 
-const { Header, Footer, Sider, Content } = Layout;
+const {Header, Footer, Sider, Content} = Layout;
 const SubMenu = Menu.SubMenu;
 
 class Admin extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             collapsed: false,
@@ -53,24 +53,24 @@ class Admin extends Component {
             key: 'address',
         }];
 
-        return(
+        return (
             <Layout className="AdminLayoutPage">
                 {/*layout만들때 큰 컴포넌트는 Page로 구성하고 작은 컴포넌트들을 빼줘야한다.*/}
                 <Sider
                     collapsible
-                    collapsed= {this.state.collapsed}
-                    onCollapse= {this.onCollapse}
+                    collapsed={this.state.collapsed}
+                    onCollapse={this.onCollapse}
                 >
-                    <AdminSide mode = {this.state.mode}/>
+                    <AdminSide mode={this.state.mode}/>
                 </Sider>
 
                 <Layout>
                     <Header/>
                     <Content>
                         {/*<Table dataSource={dataSource} columns={columns}/>*/}
-                      {this.props.children}
+                        {this.props.children}
                     </Content>
-                    <Footer style={{ background: '#fff', textAlign: 'center' }}>
+                    <Footer style={{textAlign: 'center'}}>
                         Ant Design prac ©2017 Created by Lightsoo
                     </Footer>
                 </Layout>
@@ -79,37 +79,38 @@ class Admin extends Component {
     }
 }
 
-class AdminSide extends Component{
+class AdminSide extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         console.log('AdminSide props: ', this.props);
     }
+
     render() {
         return (
-                <Menu theme="dark" mode={this.props.mode}
-                      defaultOpenKeys={['/admin/terms']}
-                      defaultSelectedKeys={['/admin/terms']}
+            <Menu theme="dark" mode={this.props.mode}
+                  defaultOpenKeys={['/admin/terms']}
+                  defaultSelectedKeys={['/admin/terms']}
+            >
+                <SubMenu
+                    key="sub1"
+                    title={<span><Icon type="user"/><span className="nav-text">User</span></span>}
                 >
-                    <SubMenu
-                        key="sub1"
-                        title={<span><Icon type="user" /><span className="nav-text">User</span></span>}
-                    >
-                        <Menu.Item key="/admin/notice">
-                            <Link to="/admin/notice">
-                                <Icon type="team"/>
-                                <span className="nav-text">Notice</span>
-                            </Link>
-                        </Menu.Item>
-                    </SubMenu>
-                    <Menu.Item key="/admin/terms">Term</Menu.Item>
-                    <Menu.Item key="/admin/providers">
-                        <Link to="/admin/providers">
+                    <Menu.Item key="/admin/notice">
+                        <Link to="/admin/notice">
                             <Icon type="team"/>
-                            <span className="nav-text">서비스 관리</span>
+                            <span className="nav-text">Notice</span>
                         </Link>
                     </Menu.Item>
-                </Menu>
+                </SubMenu>
+                <Menu.Item key="/admin/terms">Term</Menu.Item>
+                <Menu.Item key="/admin/providers">
+                    <Link to="/admin/providers">
+                        <Icon type="team"/>
+                        <span className="nav-text">서비스 관리</span>
+                    </Link>
+                </Menu.Item>
+            </Menu>
         );
     }
 }
