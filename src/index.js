@@ -28,10 +28,10 @@ ReactDOM.render(
             </Route>
 
             <Route path="/login" component={App}>
-                <Route path="/user" component={User}>
-                    <Route path="/:id" component=""/>
+                <Route path="user" component={User}>
+                    <Route path=":id" component=""/>
                 </Route>
-                <Route path="/b" component={User}/>
+                <Route path="b" component={User}/>
             </Route>
         </Router>
     </Provider>,

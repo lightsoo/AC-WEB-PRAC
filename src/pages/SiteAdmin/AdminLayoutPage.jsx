@@ -30,14 +30,7 @@ class AdminLayoutPage extends Component {
     render() {
         //connect를 통해 reducer의 state와
         const {notice, searchNotice, searchNoticeByText} = this.props;
-        // const childrenWithProps = React.Children.map(this.props.children,
-        //     (child) => React.cloneElement(child, {
-        //         notice:{notice},
-        //         // {...notice},
-        //         searchNotice: {searchNotice},
-        //         searchNoticeByText:{searchNoticeByText},
-        //     })
-        // );
+
         return (
 
             <Layout className="AdminLayoutPage">
@@ -54,14 +47,11 @@ class AdminLayoutPage extends Component {
                     <Content>
                         <NoticeList
                             //pass props to child
-                            notice={notice}
-
-                            // {...notice}
+                            {...notice}
                             searchNotice={searchNotice}
                             searchNoticeByText={searchNoticeByText}
                         />
                         {/*{this.props.children}*/}
-                        {/*{childrenWithProps}*/}
                     </Content>
                     <Footer style={{textAlign: 'center'}}>
                         Ant Design prac ©2017 Created by Lightsoo

@@ -4,6 +4,9 @@ import {Table, Input} from 'antd';
 
 const Search = Input.Search;
 
+/*presentational 컴포넌트에서는 자신의 state를 가지는게 아니라
+container 컴포넌트의 props를 받아서 사용한다
+*/
 export default class NoticeListPage extends Component {
 
     constructor(props) {
@@ -25,12 +28,12 @@ export default class NoticeListPage extends Component {
 
     componentWillReceiveProps(nextProps, nextContext) {
         console.log('---componentWillReceiveProps nextProps---\n', nextProps);
-        const {dataSource, columns, notice} = nextProps;
-        console.log('notice: ', notice);
-        this.setState({
-            dataSource : notice.dataSource,
-            columns: notice.columns
-        });
+        // const {dataSource, columns, notice} = nextProps;
+        // console.log('notice: ', notice);
+        // this.setState({
+        //     dataSource : notice.dataSource,
+        //     columns: notice.columns
+        // });
     }
 
     render() {
@@ -56,8 +59,8 @@ export default class NoticeListPage extends Component {
                 <div className="options-wrap">
                 </div>
                 <div className="contents">
-                    <Table dataSource={this.state.dataSource} columns={this.state.columns} pagination={true}/>
-                    {/*<Table dataSource={dataSource} columns={columns} pagination={true}/>*/}
+                    {/*<Table dataSource={this.state.dataSource} columns={this.state.columns} pagination={true}/>*/}
+                    <Table dataSource={dataSource} columns={columns} pagination={true}/>
                 </div>
             </div>
         );
