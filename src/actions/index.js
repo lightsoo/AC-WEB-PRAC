@@ -9,7 +9,6 @@ export const SAVE_USER = 'SAVE_USER';
 export const SEARCH_NOTICE = 'SEARCH_NOTICE';
 export const SEARCH_NOTICE_BY_TEXT = 'SEARCH_NOTICE_BY_TEXT';
 
-
 //action creators
 
 //User 조회
@@ -31,6 +30,7 @@ export function saveUser() {
 }
 
 export function searchNotice() {
+    console.log('Action!!! searchNotice');
     return {
         type: 'SEARCH_NOTICE',
         payload: {
@@ -134,15 +134,16 @@ export function searchNotice() {
                     title: 'Address',
                     dataIndex: 'address',
                     key: 'address',
-                }]
+                }],
+            test:'tttt'
         }
     }
 }
 
-export function searchNoticeByText(cond) {
-    console.log('searchNoticeByText cond: ', cond);
+export function searchNoticeByText(keyword) {
+    console.log('Action!!! searchNoticeByText keyword: ', keyword);
     let dataSource;
-    if (cond) {
+    if (keyword) {
         dataSource = [
             {
                 key: '217191',
@@ -162,10 +163,10 @@ export function searchNoticeByText(cond) {
             }];
     } else {
         dataSource = [{
-                key: '217191',
-                name: 'John',
-                age: 42,
-                address: '10 Downing Street'
+                key: '1003872',
+                name: 'Lightsoo',
+                age: 27,
+                address: 'seoul'
             }];
     }
 

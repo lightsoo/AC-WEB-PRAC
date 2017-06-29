@@ -28,9 +28,18 @@ class AdminLayoutPage extends Component {
     };
 
     render() {
-        const {notice, searchNotice, handleSearch} = this.props;
-
+        //connect를 통해 reducer의 state와
+        const {notice, searchNotice, searchNoticeByText} = this.props;
+        // const childrenWithProps = React.Children.map(this.props.children,
+        //     (child) => React.cloneElement(child, {
+        //         notice:{notice},
+        //         // {...notice},
+        //         searchNotice: {searchNotice},
+        //         searchNoticeByText:{searchNoticeByText},
+        //     })
+        // );
         return (
+
             <Layout className="AdminLayoutPage">
                 <Sider
                     collapsible
@@ -43,14 +52,16 @@ class AdminLayoutPage extends Component {
                 <Layout>
                     <Header/>
                     <Content>
-                        {/*<Table dataSource={dataSource} columns={columns}/>*/}
-                        {/*{this.props.children}*/}
                         <NoticeList
-                            // notice={notice}
-                            {...notice}
+                            //pass props to child
+                            notice={notice}
+
+                            // {...notice}
                             searchNotice={searchNotice}
-                            handleSearch={handleSearch}
+                            searchNoticeByText={searchNoticeByText}
                         />
+                        {/*{this.props.children}*/}
+                        {/*{childrenWithProps}*/}
                     </Content>
                     <Footer style={{textAlign: 'center'}}>
                         Ant Design prac ©2017 Created by Lightsoo
@@ -85,7 +96,12 @@ class AdminSide extends Component {
                         </Link>
                     </Menu.Item>
                 </SubMenu>
-                <Menu.Item key="/admin/terms">Term</Menu.Item>
+                <Menu.Item key="/admin/terms">
+                    <Link to="/admin/terms">
+                        <Icon type="team"/>
+                        <span className="nav-text">약관 관리</span>
+                    </Link>
+                </Menu.Item>
                 <Menu.Item key="/admin/providers">
                     <Link to="/admin/providers">
                         <Icon type="team"/>
@@ -97,8 +113,6 @@ class AdminSide extends Component {
     }
 }
 
-// redux의 state가 mapStateToProps 함수를 통해 React의 props로 전달됩니다.
-// (Store -> View 부분입니다. Store에서 바뀐 정보가 View로 가는 거죠.)
 
 //여기서 비즈니스 로직을 짜고 state값으 받는 presentational component(자식)은 View만 책임...
 //AdminLayoutPage에서 자식 컴포넌트에 state값을 넘겨주는것
@@ -112,7 +126,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         searchNotice: () => dispatch(searchNotice()),
-        handleSearch: (cond) => dispatch(searchNoticeByText(cond))
+        searchNoticeByText: (cond) => dispatch(searchNoticeByText(cond))
     }
 };
 

@@ -11,48 +11,44 @@ export default class NoticeListPage extends Component {
         super(props);
         this.state = {
             dataSource: [],
-            columns:[]
+            columns: [],
+            test:''
         };
     }
 
-    //한번 mounte 된다.
+    //한번 mount 된다.
     componentDidMount() {
-        console.log('---componentDidMount---\n');
+        console.log('---componentDidMount---\n', this.props);
         // ajax call
         this.props.searchNotice();
-        const {dataSource, columns} = this.props;
-        // console.log('NoticeListPage componentDidMount(): \n', this.props);
-
-        this.setState({
-            dataSource,
-            columns
-        })
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log('---componentWillReceiveProps---\n');
-        const {dataSource, columns} = nextProps;
+    componentWillReceiveProps(nextProps, nextContext) {
+        console.log('---componentWillReceiveProps nextProps---\n', nextProps);
+        const {dataSource, columns, notice} = nextProps;
+        console.log('notice: ', notice);
         this.setState({
-            dataSource,
-            columns
-        })
+            dataSource : notice.dataSource,
+            columns: notice.columns
+        });
     }
 
     render() {
+        const {dataSource, columns} = this.props;
+
         console.log('render~~~~~~~~~');
         return (
             <div className="NoticeListPage">
                 <div className="page-header">
                     <div className="title">
-                        <h3>Notise List Page~</h3>
+                        <h3>Notice List Page~</h3>
                     </div>
                     <div className="search-bar">
                         <Search
                             placeholder="Data 검색"
                             // defalutValue={this.props.keyword}
                             style={{width: 200}}
-                            // onSearch={this.handleSearch}
-                            onSearch={this.props.handleSearch}
+                            onSearch={this.props.searchNoticeByText}
                         >
                         </Search>
                     </div>
@@ -60,33 +56,10 @@ export default class NoticeListPage extends Component {
                 <div className="options-wrap">
                 </div>
                 <div className="contents">
-                    {/*DidMount에서 setState해줘서 이렇게 사용하면 될지알앗는데 set이 안됫다..*/}
                     <Table dataSource={this.state.dataSource} columns={this.state.columns} pagination={true}/>
-
                     {/*<Table dataSource={dataSource} columns={columns} pagination={true}/>*/}
                 </div>
             </div>
         );
     }
-
-    // handleSearch = (keyword) => {
-    //     const newCondition = {
-    //         page: 1,
-    //         keyword
-    //     };
-    //     // console.log(newCondition);
-    //     //나중에는 여기서 액션을 줘야한다
-    //     const dataSource = [
-    //         {
-    //             key: '1',
-    //             name: 'Mike',
-    //             age: 32,
-    //             address: '10 Downing Street'
-    //         }];
-    //
-    //     //필터하는걸 만들어서 세팅, 생각해보면 액션을 취해서 API로 새로 데이터를 불러와야 되는게 맞는듯한데...?
-    //     this.setState({
-    //         dataSource
-    //     });
-    // };
 }
