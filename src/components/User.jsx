@@ -3,19 +3,18 @@ import {connect} from 'react-redux';
 import {fetchUser} from '../actions/index';
 import { Button } from 'antd';
 
-
 //부모   - 자식 1
 //      - 자식 2 의 데이터 흐름에서 자식 2의 데이터를 부모를 통해 자식에 보낼수있다
 //상위 -> 하위에서 데이터를 넘길때 props을 자주 사용한다
 
 class User extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     componentDidMount() {
         // ajax call
-        this.props.fetchUser();
+        this.props.fetchUser2();
     }
 
     componentWillReceiveProps () {
@@ -23,11 +22,11 @@ class User extends Component {
     }
 
     render() {
+        const {user} = this.props;
         return (
             <div className="user">
                     <p>
-                        asdasd :
-                        {this.props.user}
+                        user :::: {user}
                     </p>
                 <Button typd="Primary">Primary</Button>
             </div>
@@ -42,7 +41,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        fetchUser: () => dispatch(fetchUser())
+        fetchUser2: () => dispatch(fetchUser())
     }
 };
  // 리듀서가 받기위해 호출되는것이 dispatch

@@ -1,25 +1,36 @@
-import {combineReducers} from 'redux';
-// import user from './user'
+/*변경한 상태를 받아 기존의 상태를 새로운 상태로 변경하는 일을 한다*/
 
-function user(state = '', action) {
+import {combineReducers} from 'redux';
+
+function user(previousState = '', action) {
     switch (action.type){
         case 'FETCH_USER' :
-            // console.log('FETCH_USER');
-            // console.log(action);
             return action.payload;
-
         case 'SAVE_USER':
-            // console.log('SAVE_FETCH');
             return action.payload;
         default :
-            return state;
+            return previousState;
+    }
+}
+
+function notice(previousState= '', action) {
+    // console.log('notice previousState: ', previousState);
+    switch (action.type){
+        case 'SEARCH_NOTICE':
+            console.log('SEARCH_NOTICE: ', action);
+            return action.payload;
+        case 'SEARCH_NOTICE_BY_TEXT':
+            console.log('SEARCH_NOTICE_BY_TEXT 액션값: ', action);
+            return action.payload;
+        default :
+            return previousState;
     }
 }
 
 //state
 const rootReducer = combineReducers({
-    // user : user
-    user
+    user,
+    notice
 });
 
 export default rootReducer;
